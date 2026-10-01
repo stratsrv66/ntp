@@ -52,6 +52,13 @@ export function buildProjects(config: Config, home?: string): ProjectView[] {
   })
 }
 
+/** Ajoute, après `matched`, les repos des projets qui y figurent (chercher un projet révèle ses repos). */
+export function withProjectRepos(matched: readonly Item[], items: readonly Item[]): Item[] {
+  const projects = new Set(matched.filter((i) => i.kind === 'project').map((i) => i.project))
+  const seen = new Set(matched.map((i) => i.id))
+  return [...matched, ...items.filter((i) => i.kind === 'repo' && projects.has(i.project) && !seen.has(i.id))]
+}
+
 export function buildItems(projects: readonly ProjectView[]): Item[] {
   const items: Item[] = []
   for (const p of projects) {

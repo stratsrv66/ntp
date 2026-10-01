@@ -84,7 +84,7 @@ Fichier `~/.config/ntp/config.json` (créé par le premier `ntp config add`) :
 
 ## Recherche et clavier
 
-Les repos **et** les projets sont cherchables (un projet mène à son dossier). Insensible à la casse ; classement : exacte > préfixe > sous-chaîne > sous-séquence floue (`pgw` trouve `payment-gateway`), puis ordre alphabétique.
+Les repos **et** les projets sont cherchables (un projet mène à son dossier). Insensible à la casse ; classement : exacte > préfixe > sous-chaîne > sous-séquence floue (`pgw` trouve `payment-gateway`), puis ordre alphabétique. Quand un projet correspond, tous ses repos sont aussi affichés (après les correspondances directes) et sélectionnables avec `↑`/`↓`.
 
 | Touche | Action |
 | --- | --- |

@@ -56,6 +56,18 @@ describe('App', () => {
     expect(chosen).toBe('/dev/sportsbook')
   })
 
+  it('chercher un projet affiche aussi ses repos, sélectionnables avec ↓', async () => {
+    let chosen: string | undefined
+    const { stdin, lastFrame } = render(<App projects={projects} onSelect={(p) => (chosen = p)} />)
+    await tick()
+    await type(stdin, 'sports')
+    expect(lastFrame()).toContain('odds')
+    expect(lastFrame()).not.toContain('payment-api')
+    await type(stdin, '\u001B[B')
+    await type(stdin, '\r')
+    expect(chosen).toBe('/dev/sportsbook/odds')
+  })
+
   it('aucun résultat → message, Entrée ne sélectionne rien', async () => {
     let chosen: string | undefined
     const { stdin, lastFrame } = render(<App projects={projects} onSelect={(p) => (chosen = p)} />)
